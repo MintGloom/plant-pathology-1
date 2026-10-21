@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PTH313 End Term Examination – Question Papers</title>
+<style>
+:root{--bg:#f4f7f5;--card:#fff;--ink:#17231d;--mute:#5b6b62;--line:#d9e2dc;--acc:#1f5c43;--accbg:#e3f1ea;--ok:#0f7a45;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1713;--card:#17221c;--ink:#e6efe9;--mute:#9bb0a4;--line:#2a3a31;--acc:#6fd0a0;--accbg:#1b3328;--ok:#6fd0a0}}
+html{scroll-padding-top:90px;color-scheme:light dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Instrument Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif;font-weight:600;margin:0}
+header.top{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line);padding:10px 16px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.tabs{display:flex;gap:6px}
+.tabs button,.ans{font:inherit;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:8px 16px;border-radius:8px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--acc);color:var(--card);border-color:var(--acc)}
+.ans{background:var(--accbg);border-color:var(--acc);color:var(--acc);font-weight:600}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+main{max-width:860px;margin:0 auto;padding:24px 16px 64px}
+.sheet{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:28px}
+.head{text-align:center;border-bottom:2px solid var(--ink);padding-bottom:16px;margin-bottom:18px}
+.head h1{font-size:1.7rem}.head p{margin:4px 0;color:var(--mute)}
+.meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:10px;font-weight:600}
+.note{background:var(--accbg);border-radius:8px;padding:10px 14px;margin:14px 0;font-size:.95rem}
+h2{font-size:1.3rem;margin:28px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.q{padding:12px 0;border-bottom:1px dashed var(--line)}
+.q .t{display:flex;gap:10px}.q .n{font-weight:700;min-width:2.2em}
+.opts{list-style:none;margin:8px 0 0 2.2em;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:4px 18px}
+.opts li{padding:3px 8px;border-radius:6px}
+.key{display:none;margin:8px 0 0 2.2em;padding:8px 12px;border-left:4px solid var(--ok);background:var(--accbg);border-radius:4px;font-size:.95rem}
+.show .key{display:block}.show .opts li.c{background:var(--accbg);color:var(--ok);font-weight:600}
+.marks{margin-left:auto;color:var(--mute);white-space:nowrap}
+@media (max-width:600px){.opts{grid-template-columns:1fr}.sheet{padding:16px}}
+@media print{header.top{display:none}.sheet{border:0}}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600&family=Newsreader:wght@500;600&display=swap">
+</head>
+<body>
+<header class="top">
+ <div class="tabs" role="tablist"></div>
+ <button class="ans" id="tog" aria-pressed="false">Show answers</button>
+</header>
+<main><div class="sheet" id="sheet"></div></main>
+<script>
+const L=["A","B","C","D"];
+const M=(q,o,a)=>({q,o:o.split("|"),a});
+const S=(q,m,a)=>({q,m,a});
+const SETS={
+A:{mcq:[
+M("White rust of rapeseed-mustard is caused by","Alternaria brassicae|Peronospora parasitica|Albugo candida|Erysiphe polygoni",2),
+M("The ‘stag head’ structure results from white rust mixed with","downy mildew|powdery mildew|club root|bacterial blight",0),
+M("Plasmodiophora brassicae survives in soil as","sclerotia|resting spores|pycnidia|zoosporangia",1),
+M("‘Finger and toe’ is another name for","white rust|Sclerotinia rot|club root|black rot",2),
+M("Sclerotinia stem rot is caused by","Sclerotinia sclerotiorum|Sclerotium rolfsii|Macrophomina phaseolina|Rhizopus sp.",0),
+M("Bacterial black rot of crucifers is caused by","Pseudomonas syringae|Xanthomonas campestris pv. campestris|Erwinia carotovora|Ralstonia solanacearum",1),
+M("Hot water seed treatment for bacterial blight is","40 °C for 15 min|50 °C for 30 min|60 °C for 45 min|70 °C for 10 min",1),
+M("A V-shaped chlorotic area with its base on the midrib indicates","white rust|club root|bacterial blight|downy mildew",2),
+M("Early leaf spot of groundnut is caused by","Cercospora personata|Cercospora arachidicola|Puccinia arachidis|Alternaria arachidis",1),
+M("The sexual stage of Cercospora arachidicola is","Mycosphaerella arachidis|Mycosphaerella berkeleyii|Sclerotinia|Albugo",0),
+M("Late leaf spot lesions are typically","brown with yellow halo above|white and powdery|black, rough, on lower surface|water soaked",2),
+M("Groundnut rust is caused by","Melampsora ricini|Puccinia arachidis|Puccinia helianthi|Puccinia carthami",1),
+M("Stem rot of groundnut is caused by","Fusarium|Macrophomina|Sclerotium rolfsii|Sclerotinia",2),
+M("Peanut bud necrosis virus causes","rosette|bud necrosis|phyllody|mosaic",1),
+M("Groundnut rosette is associated with","TSV|CMV|SMV|GRAV",3),
+M("Sunflower leaf blight is caused by","Puccinia helianthi|Alternaria helianthi|Rhizopus sp.|Plasmopara halstedii",1),
+M("Downy mildew of sunflower is caused by","Peronospora parasitica|Erysiphe cichoracearum|Plasmopara halstedii|Albugo candida",2),
+M("Head rot of sunflower is caused by","Alternaria|Puccinia|Sclerotium|Rhizopus sp.",3),
+M("Sunflower necrosis is caused by","Tobacco streak virus|Cucumber mosaic virus|Sunflower mosaic virus|Peanut bud necrosis virus",0),
+M("Sesame phyllody is caused by a","virus|phytoplasma|fungus|bacterium",1),
+M("The vector of sesame phyllody is","whitefly|aphid|jassid|thrips",2),
+M("Wilt of sesame is caused by","Fusarium oxysporum f. sp. carthami|Fusarium solani|Verticillium|Fusarium oxysporum f. sp. sesami",3),
+M("Mosaic of safflower is caused by","Cucumber mosaic virus|Tobacco mosaic virus|Rai mosaic virus|GRAV",0),
+M("Safflower rust is caused by","Puccinia arachidis|Melampsora ricini|Puccinia carthami|Puccinia helianthi",2),
+M("Castor seedling blight is caused by","Phytophthora infestans|Phytophthora parasitica|Pythium|Rhizoctonia",1),
+M("Castor rust is caused by","Puccinia carthami|Puccinia arachidis|Uromyces|Melampsora ricini",3),
+M("Powdery mildew of castor is caused by","Leveillula taurica|Erysiphe polygoni|Oidium sp.|Erysiphe cichoracearum",0),
+M("Bacterial leaf spot of castor is caused by Xanthomonas campestris pv.","campestris|sesami|ricinicola|carthami",2),
+M("Metalaxyl seed treatment for white rust is at","2 g/kg|6 g/kg|10 g/kg|0.2 g/kg",1),
+M("Seed treatment for castor seedling blight uses","thiram or captan @ 4 g/kg|Metalaxyl @ 6 g/kg|mercuric chloride|Phorate 10G",0)
+],sub:[
+S("Describe the symptoms, favourable conditions and management of white rust of mustard.",10,"Symptoms: creamy-white raised pustules on leaves that coalesce; systemic infection with downy mildew causes swelling and distortion of stem and flowers (hypertrophy/hyperplasia) – ‘stag head’. Favourable: RH above 70%, 12–25 °C, intermittent rain. Management: resistant varieties, 3-year rotation, remove weeds and debris, Metalaxyl seed treatment 6 g/kg, spray Bordeaux mixture 8% or Dithane M-45 0.2% or Ridomil MZ 72 WP 2 kg/ha."),
+S("Write the disease cycle and management of Sclerotinia stem rot.",10,"Pathogen survives as mycelium in plants and as sclerotia in plant parts, on soil surface or as seed contaminant. Sclerotia form apothecia in moist soil; ascospores infect petals, then stem. Symptoms: water-soaked lesions near crown, cottony growth, bleached stems, black sclerotia inside. Favourable: 90–95% RH, 18–25 °C. Management: crop rotation, clean seed, avoid dense stands and fields with past infection."),
+S("Distinguish early leaf spot from late leaf spot of groundnut.",10,"Early (C. arachidicola): starts about 1 month after sowing; dark brown sub-circular spots on upper surface with yellow halo; mycelium without haustoria; sexual stage Mycosphaerella arachidis. Late (C. personata): starts about 2 months after sowing; black, rough, nearly circular spots mostly on lower surface; haustoria present; sexual stage M. berkeleyii. Both cause premature defoliation."),
+S("Explain the symptoms, vector and management of sesame phyllody.",10,"Caused by phytoplasma. Vein clearing, flowers turn into green leafy structures (phylloid), sterile flowers, thick veins, stunting, reduced internodes, abnormal branching. Transmitted by jassids; survives on alternate hosts (toria, rapa, chickpea, Crotalaria, Trifolium, groundnut). Management: remove weed hosts and infected plants, spray Monocrotophos or Dimethoate 500 ml/ha, soil application of Thimet 10G (10 kg/ha) or Phorate 10G (11 kg/ha) at sowing."),
+S("Write short notes on any two: (a) Club root (b) Bacterial black rot (c) Castor seedling blight.",10,"Club root: stunted plants, club-shaped root galls, yellowing and wilting; resting spores in soil; humid, moist soil; control by debris removal, solarisation, resistant varieties. Black rot: V-shaped yellowing, black veins, stem hollowing; seed- and soil-borne; hot water seed treatment 50 °C/30 min, 3-year rotation. Castor blight: dull green patches on cotyledons, rotting, seedling death; 20–25 °C, rainy weather; thiram/captan 4 g/kg, avoid ill-drained fields.")
+]},
+B:{mcq:[
+M("Resting structures of Albugo candida are","oospores|sclerotia|teliospores|chlamydospores only",0),
+M("Secondary spread of white rust is by","ascospores|sporangia and zoospores|sclerotia|pycnidiospores",1),
+M("Temperature range favouring white rust is","5–8 °C|12–25 °C|30–35 °C|38–40 °C",1),
+M("Bordeaux mixture concentration recommended for white rust is","1%|4%|8%|0.2%",2),
+M("Ridomil MZ 72 WP for white rust is used at","2 kg/ha|6 kg/ha|500 g/ha|10 kg/ha",0),
+M("Downy mildew of mustard is caused by","Peronospora parasitica|Plasmopara halstedii|Albugo candida|Leveillula taurica",0),
+M("Powdery mildew of mustard is caused by","Erysiphe cichoracearum|Erysiphe polygoni|Oidium sp.|Leveillula taurica",1),
+M("Alternaria blight of mustard is caused by","Alternaria ricini|Alternaria carthami|Alternaria brassicae|Alternaria helianthi",2),
+M("Club root is favoured by","dry, alkaline soil|high soil moisture and humid weather|cold dry winds|drought",1),
+M("Which control step is suggested for club root?","soil solarisation|hot water seed treatment|Metalaxyl spray|jassid control",0),
+M("Sclerotinia sclerotiorum is favoured by humidity of","40–50%|60–70%|90–95%|below 30%",2),
+M("Sclerotinia may travel with seed as","mycelial fragments only|spores only|sclerotia as contaminant|haustoria",2),
+M("Bacterial blight of crucifers spreads by","soil and irrigation water|only wind|only insects|root grafting",0),
+M("Mosaic of Brassica is caused by","Cauliflower/Rai/Turnip mosaic virus|Tobacco streak virus|GRAV|Peanut bud necrosis virus",0),
+M("Late leaf spot starts in Kharif at about","20 days|30 days|55–57 days|100 days",2),
+M("Late leaf spot starts in Rabi at about","42–46 days|10 days|70 days|90 days",0),
+M("Conidia of C. personata are mostly","10–12 septate|3–4 septate|aseptate|muriform",1),
+M("Ascospores of Mycosphaerella in groundnut are","single-celled hyaline|two-celled, apical cell larger|brown, 4-celled|globose",1),
+M("Leaf spot of groundnut is favoured by deficiency of","magnesium|iron|zinc|boron",0),
+M("Seed treatment for groundnut leaf spot is","Carbendazim or Thiram 2 g/kg|Phorate 11 kg/ha|Metalaxyl 6 g/kg|Captan 4 g/kg",0),
+M("A moderately resistant groundnut variety for leaf spot is","ALR 1|JL 24|Kaveri|Pusa Bold",0),
+M("Groundnut anthracnose is caused by","Colletotrichum dematium|Sclerotium rolfsii|Alternaria tenuissima|Puccinia arachidis",0),
+M("Charcoal rot of sunflower and sesame is caused by","Macrophomina phaseolina|Sclerotinia|Fusarium|Rhizopus",0),
+M("Basal rot of sunflower is caused by","Rhizopus|Sclerotium rolfsii|Macrophomina|Alternaria",1),
+M("Sunflower mosaic virus is abbreviated","TSV|SMV|PBNV|GRAV",1),
+M("Sesame leaf spot is caused by","Cercospora sesami|Cercospora ricinella|Cercospora carthami|C. personata",0),
+M("Bacterial blight of sesame is Xanthomonas campestris pv.","ricinicola|campestris|sesami|carthami",2),
+M("Safflower wilt is caused by Fusarium oxysporum f. sp.","sesami|carthami|ricini|lycopersici",1),
+M("Castor seedling blight sporangia produce zoospores numbering","1–2|8–20|50–60|over 100",1),
+M("Castor leaf spot is caused by","Cercospora ricinella|Alternaria ricini|Cercospora carthami|Melampsora ricini",0)
+],sub:[
+S("Explain the disease cycle of Sclerotinia sclerotiorum with a labelled sketch description.",10,"Sclerotia survive in soil through summer. In moist soil they produce apothecia that release ascospores during the growing season. Ascospores infect petals; infected petals fall onto stems and start infection under wet, humid conditions. Stem rot develops with white cottony growth; new sclerotia form inside stems and fall to soil. Sclerotia may also germinate directly to infect the stem base."),
+S("Describe the symptoms and management of bacterial blight (black rot) of crucifers.",10,"Yellowing from leaf margin forming V-shaped area with base at midrib; black veins; midrib cracking; dark streaks on stem that girdle it; hollow stem; plant collapse. Survives in residue and seed; spreads by soil and irrigation water; warm humid climate. Management: mercuric chloride seed treatment 30 min, hot water 50 °C 30 min, 3-year rotation, strict sanitation."),
+S("Give the morphology of Cercospora arachidicola and C. personata.",10,"C. arachidicola: intercellular mycelium without haustoria; conidiophores olivaceous/yellowish brown, short, 1–2 septate, geniculate, in clusters; conidia pale yellow, obclavate, often curved, 3–12 septate. C. personata: mycelium with haustoria; conidiophores long, continuous, geniculate, olive brown; conidia cylindrical/obclavate, short, 1–9 septate, mostly 3–4."),
+S("Discuss the integrated management of leaf spots of groundnut.",10,"Remove and destroy infected debris; control weeds; treat seed with Carbendazim or Thiram 2 g/kg; spray Carbendazim 500 g or Mancozeb 2 kg or Chlorothalonil 2 kg/ha, repeat after 15 days if needed; grow moderately resistant varieties like ALR 1; avoid heavy N and P doses and correct magnesium deficiency; favourable conditions are 3 days high humidity, about 20 °C and leaf dew."),
+S("Write the pathogen, symptoms and favourable conditions of castor seedling blight.",10,"Phytophthora parasitica: hyaline coenocytic mycelium, ovate/pyriform sporangia, 8–20 zoospores each, globose thick-walled oospores. Symptoms: dull green circular patches on cotyledons, rotting, seedling death; in older plants black discoloration of petiole and stem and defoliation. Favourable: continuous rain, 20–25 °C, low-lying ill-drained soil. Survives as chlamydospores/oospores and on potato, tomato, brinjal, sesamum.")
+]},
+C:{mcq:[
+M("Which crop group do these diseases belong to?","Cereals|Oilseeds|Pulses|Fibre crops",1),
+M("Albugo candida systemic infection causes swelling due to","hypertrophy and hyperplasia|necrosis only|atrophy|chlorosis only",0),
+M("Local white rust infection appears as","black sclerotia|white creamy pustules on leaves|brown rings|root galls",1),
+M("Which is NOT recommended for white rust?","Resistant varieties|Three-year rotation|Removal of weeds|Planting radish after mustard",3),
+M("Plasmodiophora brassicae produces on roots","nodules to club-shaped galls|soft rot only|white mould|cankers",0),
+M("Sclerotinia lesions on stem are","dry and cracked|elongated, water soaked|circular, red|pinhole",1),
+M("Safe distance advice for Sclerotinia: avoid fields with severe disease in last","1 year|2 years|4–5 years|10 years",2),
+M("Dense stands of canola/mustard should be","encouraged|avoided|irrigated more|fertilised heavily",1),
+M("Xanthomonas campestris pv. campestris survives in","only soil water|plant residue and seed|only weeds|insects",1),
+M("Veins turning brown-black are typical of","bacterial blight|white rust|powdery mildew|downy mildew",0),
+M("Early leaf spot spots on lower side are","black|lighter brown|white|red",1),
+M("Lesions in early leaf spot also occur on","roots|petioles, stems and stipules|pods only|flowers only",1),
+M("Primary infection of groundnut leaf spot is by","ascospores or conidia from debris and seed|irrigation only|nematodes|jassids",0),
+M("Secondary spread of leaf spot is by","wind-blown conidia and rain splash|soil sclerotia|seed|aphids",0),
+M("Chlorothalonil dose for groundnut leaf spot is","2 kg/ha|500 g/ha|6 g/kg|10 kg/ha",0),
+M("Early leaf spot favoured by temperature about","5 °C|20 °C|35 °C|45 °C",1),
+M("Alternaria leaf spot of groundnut: A. arachidis and","A. tenuissima|A. helianthi|A. ricini|A. carthami",0),
+M("Rust of sunflower is caused by","Puccinia helianthi|Puccinia arachidis|Melampsora ricini|Albugo candida",0),
+M("Powdery mildew of sunflower is caused by","Leveillula taurica|Erysiphe cichoracearum|Erysiphe polygoni|Plasmopara",1),
+M("Tobacco streak virus causes which disease of sunflower?","Mosaic|Rosette|Necrosis|Phyllody",2),
+M("Phyllody flowers are","sterile and leafy|fertile and large|red|wilted only",0),
+M("Phyllody symptom starting stage is","vein clearing|root rot|stem canker|pod rot",0),
+M("Dimethoate/Monocrotophos for phyllody are used at","500 ml/ha|5 kg/ha|6 g/kg|2 g/kg",0),
+M("Thimet 10G is applied at","10 kg/ha at sowing|2 kg/ha at harvest|500 ml/ha|6 g/kg",0),
+M("Powdery mildew of sesame is caused by","Erysiphe cichoracearum / Oidium sp.|Leveillula taurica|Albugo|Peronospora",0),
+M("Leaf spot of safflower is caused by","Cercospora carthami|Alternaria carthami|Cercospora sesami|Fusarium",0),
+M("Alternaria blight of safflower is caused by","Alternaria ricini|Alternaria carthami|Alternaria brassicae|Alternaria helianthi",1),
+M("Castor wilt is caused by","Fusarium oxysporum|Phytophthora|Sclerotium|Rhizoctonia",0),
+M("Seedling blight of castor is aided by","dry weather|continuous rainy weather|high temperature 40 °C|drought",1),
+M("Alternate hosts of castor Phytophthora include","potato, tomato, brinjal|wheat, rice|maize, sorghum|cotton only",0)
+],sub:[
+S("List the major fungal, bacterial and viral diseases of rapeseed and mustard with causal organisms.",10,"Fungal: white rust (Albugo candida), club root (Plasmodiophora brassicae), Sclerotinia stem rot (Sclerotinia sclerotiorum), Alternaria blight (Alternaria brassicae), downy mildew (Peronospora parasitica), powdery mildew (Erysiphe polygoni). Bacterial: black rot/blight (Xanthomonas campestris pv. campestris). Viral: mosaic (Cauliflower/Rai/Turnip mosaic virus)."),
+S("Describe club root of crucifers: symptoms, survival and management.",10,"Plants stunted; tiny nodules to large club-shaped galls on roots (‘finger and toe’); leaves pale green or yellow, wilt, plants die in severe cases. Resting spores survive in soil and are the primary inoculum. Humid weather and high soil moisture favour it. Management: remove plant debris, soil solarisation, resistant varieties."),
+S("Write the symptoms, disease cycle and favourable conditions of late leaf spot of groundnut.",10,"Black nearly circular rough spots on lower leaflet surface from 55–57 days (Kharif) or 42–46 days (Rabi); lesions coalesce causing senescence and leaflet shedding. Pathogen survives in debris as conidia, dormant mycelium and perithecia; primary infection by ascospores/conidia from debris or seed; secondary by wind-blown conidia and rain splash. Favoured by 3 days of high RH, about 20 °C with dew, heavy N and P, Mg deficiency."),
+S("Give an account of sunflower diseases with causal organisms, and describe any one in detail.",10,"Alternaria leaf blight (A. helianthi), charcoal rot (Macrophomina phaseolina), rust (Puccinia helianthi), basal rot (Sclerotium rolfsii), head rot (Rhizopus), powdery mildew (Erysiphe cichoracearum), downy mildew (Plasmopara halstedii), necrosis (Tobacco streak virus), mosaic (Sunflower mosaic virus). Accept any one well described with symptoms, spread and control."),
+S("Compare the diseases of safflower and castor listed in the syllabus, naming pathogens.",10,"Safflower: Alternaria blight (A. carthami), leaf spot (Cercospora carthami), rust (Puccinia carthami), wilt (Fusarium oxysporum f. sp. carthami), powdery mildew (Erysiphe cichoracearum), mosaic (Cucumber mosaic virus). Castor: seedling blight (Phytophthora parasitica), rust (Melampsora ricini), Alternaria blight (A. ricini), leaf spot (Cercospora ricinella), wilt (Fusarium oxysporum), powdery mildew (Leveillula taurica), bacterial leaf spot (Xanthomonas campestris pv. ricinicola).")
+]}
+};
+const sheet=document.getElementById("sheet"),tabs=document.querySelector(".tabs"),tog=document.getElementById("tog");
+function render(k){
+ const s=SETS[k];let h=`<div class="head"><h1>End Term Examination</h1><p>PTH313 · Diseases of Oilseed Crops (Unit 3) · Set ${k}</p><div class="meta"><span>Time: 3 hours</span><span>Maximum marks: 80</span></div></div>
+ <div class="note">Section A: 30 multiple-choice questions, 1 mark each. Section B: answer all 5 questions, 10 marks each.</div><h2>Section A – Multiple choice (30 marks)</h2>`;
+ s.mcq.forEach((m,i)=>{h+=`<div class="q"><div class="t"><span class="n">${i+1}.</span><span>${m.q}</span></div><ul class="opts">${m.o.map((o,j)=>`<li class="${j===m.a?"c":""}">(${L[j]}) ${o}</li>`).join("")}</ul><div class="key">Answer: (${L[m.a]}) ${m.o[m.a]}</div></div>`});
+ h+=`<h2>Section B – Subjective (50 marks)</h2>`;
+ s.sub.forEach((m,i)=>{h+=`<div class="q"><div class="t"><span class="n">Q${i+1}.</span><span>${m.q}</span><span class="marks">[${m.m}]</span></div><div class="key"><b>Model answer:</b> ${m.a}</div></div>`});
+ sheet.innerHTML=h;
+}
+Object.keys(SETS).forEach((k,i)=>{const b=document.createElement("button");b.textContent="Set "+k;b.setAttribute("role","tab");b.setAttribute("aria-selected",i===0);b.onclick=()=>{tabs.querySelectorAll("button").forEach(x=>x.setAttribute("aria-selected",x===b));render(k);scrollTo(0,0)};tabs.appendChild(b)});
+tog.onclick=()=>{const on=sheet.classList.toggle("show");tog.textContent=on?"Hide answers":"Show answers";tog.setAttribute("aria-pressed",on)};
+render("A");
+</script>
+</body>
+</html>
